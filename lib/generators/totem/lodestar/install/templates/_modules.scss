@@ -1,23 +1,54 @@
+$font:       Arial, Helvetica, sans-serif;
+$small-font: .875em;
+$base-font:  1em;
+$large-font: 1.25em;
+$thin:       300;
+$regular:    400;
+$medium:     500;
+$bold:       600;
+$heavy:      700;
+
+$border-radius: 3px;
+$padding:       1em;
+
+$black:        black;
+$white:        white;
+$gray:         gray;
+$light-gray:   lightgray;
+$dark-gray:    darkgray;
+$green:        green;
+$light-green:  lightgreen;
+$dark-green:   darkgreen;
+$red:          red;
+$light-red:    lightred;
+$dark-red:     darkred;
+$purple:       purple;
+$light-purple: lightpurple;
+$dark-purple:  darkpurple;
+$blue:         blue;
+$light-blue:   lightblue;
+$dark-blue:    darkblue;
+
 /****
 Base
 ****/
 $body_bg:          $white;
 $body_color:       $black;
-$body_font:        "jaf-facitweb", sans-serif;
+$body_font:        $font;
 $body_font-size:   1em;
 
 /****
 Top Nav
 ****/
-$top-nav_bg:            $gray-100;
-$top-nav_border-bottom: 1px solid $gray-200;
+$top-nav_bg:            $light-gray;
+$top-nav_border-bottom: 1px solid $gray;
 $top-nav_spacing:       $padding;
 
 $top-nav_title-color:  $black;
 $top-nav_title-weight: $bold;
 $top-nav_title-size:   $large-font;
 
-$top-nav_sub-title-color:  $gray-600;
+$top-nav_sub-title-color:  $dark-gray;
 $top-nav_sub-title-weight: $thin;
 $top-nav_sub-title-size:   .75em;
 /****
@@ -26,7 +57,7 @@ Side Nav
 $side-nav_spacing: 0 0 $padding 0;
 
 $side-nav_header-bg:             transparent;
-$side-nav_header-color:          $gray-700;
+$side-nav_header-color:          $dark-gray;
 $side-nav_header-weight:         $bold;
 $side-nav_header-padding:        0;
 $side-nav_header-radius:         $border-radius;
@@ -45,17 +76,17 @@ $side-nav_link-radius:      $border-radius;
 $side-nav_link-size:        $small-font;
 $side-nav_link-line-height: 1.6;
 
-$side-nav_link-bg-hover:          $blue-100;
+$side-nav_link-bg-hover:          $light-blue;
 $side-nav_link-border-hover:      none;
 $side-nav_link-border-left-hover: none;
 $side-nav_link-color-hover:       $black;
 
-$side-nav_link-bg-active:     $blue-400;
+$side-nav_link-bg-active:     $blue;
 $side-nav_link-border-active: none;
 $side-nav_border-left-active: none;
 $side-nav_link-color-active:  $white;
 
-$side-nav_link-bg-active-hover:     $blue-500;
+$side-nav_link-bg-active-hover:     $dark-blue;
 $side-nav_link-border-active-hover: none;
 $side-nav_border-left-active-hover: none;
 $side-nav_link-color-active-hover:  $white;
@@ -67,7 +98,7 @@ $toc_list-height:    80vh; // 50% of viewport height
 $toc_list-overflowy: auto;
 
 $toc_header-bg:             transparent;
-$toc_header-color:          $gray-700;
+$toc_header-color:          $dark-gray;
 $toc_header-weight:         $bold;
 $toc_header-padding:        0;
 $toc_header-radius:         $border-radius;
@@ -78,12 +109,12 @@ $toc_header-letter-spacing: 0;
 $toc_list-link-bg:          transparent;
 $toc_list-link-indent-base: 1em; // multiplied by header level - 1 | ex: h3 = base*2
 $toc_list-link-padding:     $padding/2 $padding;
-$toc_list-link-color:       $gray-700;
+$toc_list-link-color:       $dark-gray;
 $toc_list-link-weight:      $regular;
 $toc_list-link-line-height: 1.6;
 $toc_list-link-size:        $small-font;
 $toc_list-link-radius:      $border-radius;
-$toc_list-link-bg-hover:    $blue-100;
+$toc_list-link-bg-hover:    $light-blue;
 
 $toc_list-link-before-content: "- ";
 
@@ -98,7 +129,7 @@ $md-p_line-height: 1.75;
 $md-p_weight:      $thin;
 
 /** Headers **/
-$md-h_font:        "jaf-facitweb",sans-serif;
+$md-h_font:        $font;
 $md-h_weight:      $heavy;
 $md-h_font-style:  normal;
 $md-h_color:       $black;
@@ -114,7 +145,7 @@ $md-h6_size: .875em;
 
 
 /** Block Quotes **/
-$md-blockquote_bg:          $purple-400;
+$md-blockquote_bg:          $purple;
 $md-blockquote_color:       white;
 $md-blockquote_radius:      $border-radius;
 $md-blockquote_padding:     $padding;
@@ -131,7 +162,7 @@ $md-codeblock_radius:  $border-radius;
 
 /** Code Spans**/
 $md-codespan_color:     $black;
-$md-codespan_bg:        $gray-100;
+$md-codespan_bg:        $light-gray;
 $md-codespan_font:      "Source Code Pro", "Bitstream Vera Sans Mono", "Consolas", "Courier", monospace;
 $md-codespan_font-size: 1rem;
 $md-codespan_padding:   .05em .5em;

@@ -6,14 +6,17 @@ module Totem
         source_root File.expand_path('../templates', __FILE__)
 
         # argument :layout_name, :type => :string, :default => "application", :banner => "layout_name"
-        # class_option :test_option, desc: "Uncomment this if options required", type: :boolean
+        class_option :force_templates, desc: "Force overwrite on all stylesheet templates", type: :boolean, default: false
+        class_option :skip_templates, desc: "Force skip on all stylesheet templates", type: :boolean, default: false
 
-        def inject_engine_css_require
-          insert_into_file(File.join(app_css_dir, "application.css.scss"), "*= require #{engine_css_dir}\n", {before: '*= require_self'})
+        def inject_engine_css
+          append_to_file app_css_file, "@import 'variables/modules';\n"
+          append_to_file app_css_file, "@import 'totem-lodestar';\n"
+          template "_modules.scss", File.join(app_css_dir, "variables", "_modules.scss"), skip: true
         end
 
-        def app_css_dir;    File.join("app", "assets", "stylesheets")     end
-        def engine_css_dir; File.join("totem", "lodestar", "application") end
+        def app_css_dir; File.join("app", "assets", "stylesheets") end
+        def app_css_file; File.join(app_css_dir, "application.css.scss") end
 
       end
     end

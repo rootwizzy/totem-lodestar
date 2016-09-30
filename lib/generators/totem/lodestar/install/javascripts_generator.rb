@@ -6,11 +6,10 @@ module Totem
         source_root File.expand_path('../templates', __FILE__)
 
         def inject_engine_js_require
-          insert_into_file( File.join(app_js_dir, "application.js"), "//= require #{engine_js_dir}\n", {before: '//= require_tree .'})
+          insert_into_file( app_js, "//= require totem-lodestar\n", {before: '//= require_tree .'})
         end
 
-        def app_js_dir;    File.join("app", "assets", "javascripts")     end
-        def engine_js_dir; File.join("totem", "lodestar", "application") end
+        def app_js; File.join("app", "assets", "javascripts", "application.js")     end
 
       end
     end
