@@ -12,7 +12,6 @@
 //
 //= require_tree .
 var ready;
-console.log('woooooooo')
 ready = function() {
   $(document).foundation();
   enable_smooth_scrolling();
