@@ -1,0 +1,91 @@
+.markdown {
+  margin-bottom: $md_document-spacing;
+
+  /****
+  Paragraphs
+  ****/
+  p {
+    line-height: $md-p_line-height;
+    font-weight: $md-p_weight;
+  }
+
+  /****
+  Codeblocks
+  ****/
+  .CodeRay {
+    .code {
+      background:    $md-codeblock_bg;
+      padding:       $md-codeblock_padding;
+      margin:        $md-codeblock_padding;
+      border-radius: $md-codeblock_radius;
+    }
+  }
+
+  /****
+  Code Spans
+  ****/
+  code {
+    color:            $md-codespan_color;
+    background-color: $md-codespan_bg;
+    border-radius:    $md-codespan_radius;
+    font-family:      $md-codespan_font;
+    font-size:        $md-codespan_font-size;
+    padding:          $md-codespan_padding;
+    overflow:         auto;
+  }
+
+  /****
+  Blockquotes
+  ****/
+  blockquote {
+    background:    $md-blockquote_bg;
+    padding:       $md-blockquote_padding;
+    margin-bottom: $md-blockquote_spacing;
+    border:        $md-blockquote_border;
+    border-left:   $md-blockquote_border-left;
+    border-radius: $md-blockquote_radius;
+
+
+    p {
+      color:       $md-blockquote_color;
+      font-weight: $md-blockquote_weight;
+
+      &:first-of-type{margin-bottom: 0;}
+    }
+  }
+
+  /****
+  Lists
+  ****/
+  ul{
+    li {
+      padding-left:  $md-ul_li-padding-left;
+      margin-bottom: $md-ul_li-spacing;
+
+      >ul {
+      margin-top: $md-ul_nested-spacing;
+      }
+    }
+  }
+
+  /****
+  Headers
+  ****/
+  h1, h2, h3, h4, h5, h6 {
+    color:          $md-h_color;
+    margin-top:     0;
+    margin-bottom:  $md-h_spacing;
+    line-height:    $md-h_line-height;
+    font-family:    $md-h_font;
+    font-weight:    $md-h_weight;
+    font-style:     $md-h_font-style;
+    text-rendering: optimizeLegibility;  
+  }
+
+  h1 {font-size: $md-h1_size;}
+  h2 {font-size: $md-h2_size;}
+  h3 {font-size: $md-h3_size;}
+  h4 {font-size: $md-h4_size;}
+  h5 {font-size: $md-h5_size;}
+  h6 {font-size: $md-h6_size;}
+}

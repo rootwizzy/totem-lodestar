@@ -1,0 +1,7 @@
+- local_assigns[:sections].order([:order]).each do |section|
+  .side-nav_section
+    .side-nav_section-header
+      == section.title
+    .side-nav_section-documents
+      - section.documents.order([:order]).each do |document|
+        == link_to document.title, {controller: 'documents', action: 'show', version_id: @version.slug, section_id: section.slug, document_id: document.slug}, class: ['side-nav_section-documents-link', current_class?("/#{@version.slug}/#{section.slug}/#{document.slug}")]

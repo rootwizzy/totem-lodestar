@@ -1,0 +1,35 @@
+.top-nav {
+  width:            100%;
+  background-color: $top-nav_bg;
+  border-bottom:    $top-nav_border-bottom;
+  margin-bottom:    $top-nav_spacing;
+
+  .top-nav_menu {
+    @include flex-grid-row();
+    padding: $padding 0;
+
+    .top-nav_menu-logo {
+      display:      inline-block;
+      margin-right: $padding;
+
+      a {
+        img {
+          height: auto;
+        }
+      }
+
+    }
+    .top-nav_menu-title {
+      display:     inline-block;
+      color:       $top-nav_title-color;
+      font-weight: $top-nav_title-weight;
+      font-size:   $top-nav_title-size;
+
+      .sub-title {
+        color:       $top-nav_sub-title-color;
+        font-weight: $top-nav_sub-title-weight;
+        font-size:   $top-nav_sub-title-size;
+      }
+    }  
+  }
+}

@@ -1,0 +1,7 @@
+.toc
+  .toc_header Table of Contents
+  .toc_list
+    - if @document
+      == get_toc(@document.body)
+    - else
+      == get_toc(@version.body)
