@@ -1,28 +1,20 @@
 # Totem::Lodestar
-Short description and motivation.
-
-## Usage
-How to use my plugin.
+A gem built to include base functonaility for markdown based documentation rails app.
 
 ## Installation
 Add this line to your application's Gemfile:
-
 ```ruby
 gem 'totem-lodestar'
 ```
 
-And then execute:
+Then execute:
 ```bash
-$ bundle
+$ bundle install
 ```
 
-Or install it yourself as:
 ```bash
-$ gem install totem-lodestar
+$ rails g totem:lodestar:install
 ```
-
-## Contributing
-Contribution directions go here.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
