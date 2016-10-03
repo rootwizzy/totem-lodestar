@@ -10,6 +10,11 @@ module Totem
       def install
         invoke "totem:lodestar:install:javascripts"
         invoke "totem:lodestar:install:stylesheets"
+        invoke "totem:lodestar:install:images"
+        invoke "totem:lodestar:install:configs"
+        invoke "totem:lodestar:install:databases"
+        invoke "totem:lodestar:install:routes"
+        invoke "totem:lodestar:install:documents"
       end
 
     end

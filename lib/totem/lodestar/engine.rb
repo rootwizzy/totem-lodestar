@@ -1,3 +1,11 @@
+## Requires are used to enforce gems are loaded in the application.
+require 'friendly_id'
+require 'config'
+require 'redcarpet'
+require 'slim'
+require 'foundation-rails'
+require 'coderay'
+
 module Totem
   module Lodestar
     class Engine < ::Rails::Engine
