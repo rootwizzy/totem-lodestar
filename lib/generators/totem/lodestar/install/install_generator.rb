@@ -1,6 +1,6 @@
 module Totem
   module Lodestar
-    class InstallGenerator < Rails::Generators::Base
+    class InstallGenerator < Rails::Generators::NamedBase
       desc "Install Totem Lodestar application assets."
       source_root File.expand_path('../templates', __FILE__)
 
@@ -15,6 +15,7 @@ module Totem
         invoke "totem:lodestar:install:databases"
         invoke "totem:lodestar:install:routes"
         invoke "totem:lodestar:install:documents"
+        invoke "totem:lodestar:install:travis_ci"
       end
 
     end
