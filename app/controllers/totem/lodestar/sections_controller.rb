@@ -3,3 +3,4 @@ module Totem
     class SectionsController < ApplicationController
     end
   end
+end
