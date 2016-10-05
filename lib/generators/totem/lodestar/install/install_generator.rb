@@ -11,11 +11,11 @@ module Totem
         invoke "totem:lodestar:install:javascripts"
         invoke "totem:lodestar:install:stylesheets"
         invoke "totem:lodestar:install:images"
-        invoke "totem:lodestar:install:configs"
-        invoke "totem:lodestar:install:databases"
+        invoke "totem:lodestar:install:configs", [file_name]
+        invoke "totem:lodestar:install:databases", [file_name]
         invoke "totem:lodestar:install:routes"
         invoke "totem:lodestar:install:documents"
-        invoke "totem:lodestar:install:travis_ci"
+        invoke "totem:lodestar:install:travis_ci", [file_name]
       end
 
     end

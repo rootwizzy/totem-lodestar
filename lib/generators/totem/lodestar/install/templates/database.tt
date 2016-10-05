@@ -14,26 +14,26 @@
 # Configure Using Gemfile
 # gem 'pg'
 default: &default
-  adapter: postgresql
+  adapter:  postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool:     <%%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: totem-lodestar_development
+  database: <%= application_name %>_development
   username: postgres
   password: password
-  host: localhost
+  host:     localhost
 
 test:
   <<:       *default
-  database: totem-lodestar_test
+  database: <%= application_name %>_test
   username: postgres
   password: password
   host:     localhost
 
 production:
   <<: *default
-  database: totem-lodestar_production
-  username: totem-lodestar
-  password: <%= ENV['TOTEM-LODESTAR_DATABASE_PASSWORD'] %>
+  database: <%= application_name %>_production
+  username: <%= application_name %>
+  password: <%%= ENV['TOTEM-LODESTAR_DATABASE_PASSWORD'] %>
