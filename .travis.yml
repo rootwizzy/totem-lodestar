@@ -8,12 +8,12 @@ env:
 - DB=pgsql
 services:
 - postgresql
-before_script:
-- cp config/database.yml.travis config/database.yml
-- psql -c 'create database lodestar_test' -U postgres
+# before_script:
+# - cp config/database.yml.travis config/database.yml
+# - psql -c 'create database lodestar_test' -U postgres
 script:
-- RAILS_ENV=test bundle exec rake db:migrate
-- bundle exec rake db:test:prepare
+# - RAILS_ENV=test bundle exec rake db:migrate
+# - bundle exec rake db:test:prepare
 - bundle exec rake
 branches:
   only:

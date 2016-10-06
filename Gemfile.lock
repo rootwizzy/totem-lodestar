@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    totem-lodestar (0.2.3)
+    totem-lodestar (0.3.0)
       coderay
       config
       foundation-rails
