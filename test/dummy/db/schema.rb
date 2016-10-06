@@ -12,17 +12,38 @@
 
 ActiveRecord::Schema.define(version: 3) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "totem_lodestar_documents", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.string   "slug"
+    t.integer  "order"
+    t.integer  "section_id"
+    t.integer  "version_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_totem_lodestar_documents_on_section_id", using: :btree
+    t.index ["version_id"], name: "index_totem_lodestar_documents_on_version_id", using: :btree
   end
 
   create_table "totem_lodestar_sections", force: :cascade do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.integer  "order"
+    t.integer  "parent_id"
+    t.integer  "version_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_totem_lodestar_sections_on_parent_id", using: :btree
+    t.index ["version_id"], name: "index_totem_lodestar_sections_on_version_id", using: :btree
   end
 
   create_table "totem_lodestar_versions", force: :cascade do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
