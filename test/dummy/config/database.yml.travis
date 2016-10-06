@@ -1,6 +1,6 @@
 test:
   adapter: postgresql
-  database: totem-lodestar_test
+  database: lodestar_test
   username: postgres
   password: 
 
