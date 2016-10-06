@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Totem::Lodestar::Engine => "/totem-lodestar"
+  mount Totem::Lodestar::Engine => "/"
 end

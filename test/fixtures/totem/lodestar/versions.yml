@@ -4,8 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+v1:
+  id:    1
+  title: 0.1.0
+  slug:  0.1.0
+  body: "#Version Index Body"
+
+v2:
+  id:    2
+  title: 0.2.0
+  slug:  0.2.0
+  body: "#Version Index Body"

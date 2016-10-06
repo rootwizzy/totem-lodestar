@@ -37,7 +37,6 @@ module Totem
 
       def get_toc(body)
         if body
-          links          = []
           header_objects = []
           body.lines.each do |line|
             if line.starts_with?("#")

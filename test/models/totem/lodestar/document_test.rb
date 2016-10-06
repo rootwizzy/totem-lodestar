@@ -1,11 +1,8 @@
 require 'test_helper'
 
-module Totem
-  module Lodestar
-    class DocumentTest < ActiveSupport::TestCase
-      # test "the truth" do
-      #   assert true
-      # end
-    end
-  end
+class DocumentTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   puts "what waht #{Version.all.inspect}"
+  #   assert true
+  # end
 end

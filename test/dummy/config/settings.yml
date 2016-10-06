@@ -1,0 +1,5 @@
+text:
+  title:     Dummy App
+  sub-title: Best Dummy app around!
+modules:
+  version_redirect: true
