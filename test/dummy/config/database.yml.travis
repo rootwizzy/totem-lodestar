@@ -1,0 +1,8 @@
+
+
+test:
+  adapter: postgresql
+  database: lodestar_test
+  username: postgres
+  password: 
+
