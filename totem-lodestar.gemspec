@@ -25,6 +25,6 @@ Gem::Specification.new do |s|
   s.add_dependency "friendly_id"
   s.add_dependency "slim"
   s.add_dependency "foundation-rails"
-  s.add_dependency "nokogiri", "= 1.6.8"
+  s.add_dependency "nokogiri"
 end
 

@@ -1,4 +1,4 @@
-$font:       Arial, Helvetica, sans-serif;
+$font:       sans-serif;
 $small-font: .875em;
 $base-font:  1em;
 $large-font: 1.25em;
@@ -11,28 +11,39 @@ $heavy:      700;
 $border-radius: 3px;
 $padding:       1em;
 
+$primay:       #82c2ee;
+$secondary:    #959595;
+$ownership:    #94cb8a;
+
 $black:        black;
 $white:        white;
-$gray:         gray;
-$light-gray:   lightgray;
-$dark-gray:    darkgray;
-$green:        green;
-$light-green:  lightgreen;
-$dark-green:   darkgreen;
-$red:          red;
-$light-red:    lightred;
-$dark-red:     darkred;
-$purple:       purple;
+$gray:         #797979;
+$light-gray:   #eeeeee;
+$dark-gray:    #464646;
+
+$dark-green:   #49973b;
+$green:        #6dc05e;
+$medium-green: #afdda7;
+$light-green:  #ebf7e9;
+
+$dark-red:     #f92121;
+$red:          #fb6b6b;
+$medium-green: #fecece;
+$light:        #fff1f1;
+
+$purple:       #7261a3;
 $light-purple: lightpurple;
 $dark-purple:  darkpurple;
-$blue:         blue;
-$light-blue:   lightblue;
-$dark-blue:    darkblue;
+
+$dark-blue:   #3194bb;
+$blue:        #63b4d6;
+$medium-blue: #b4dbeb;
+$light-blue:  #f0f8fb;
 
 /****
 Base
 ****/
-$body_bg:          $white;
+$body_bg:          #e9e6e6;
 $body_color:       $black;
 $body_font:        $font;
 $body_font-size:   1em;
@@ -145,7 +156,7 @@ $md-h6_size: .875em;
 
 
 /** Block Quotes **/
-$md-blockquote_bg:          $purple;
+$md-blockquote_bg:          $blue;
 $md-blockquote_color:       white;
 $md-blockquote_radius:      $border-radius;
 $md-blockquote_padding:     $padding;
@@ -172,3 +183,6 @@ $md-codespan_radius:    $border-radius;
 $md-ul_li-padding-left: .5em;
 $md-ul_li-spacing:      .875em;
 $md-ul_nested-spacing:  .5em;
+
+
+
