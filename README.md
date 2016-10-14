@@ -38,5 +38,13 @@ rails totem:lodestar:generate
 ```
 
 
+### Deploy
+To incorporate Travis CI to the deploy workflow you will need heroku cli as well as the travis cli.
+
+Generate your secure key
+```bash
+travis encrypt $(heroku auth:token) --add deploy.api_key
+```
+
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).

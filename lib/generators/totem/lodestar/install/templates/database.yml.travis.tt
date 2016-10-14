@@ -1,0 +1,6 @@
+test:
+  adapter: postgresql
+  database: <%= application_name %>_test
+  username: postgres
+  password: 
+
