@@ -1,12 +1,12 @@
 PATH
   remote: .
   specs:
-    totem-lodestar (0.3.0)
+    totem-lodestar (0.3.3)
       coderay
       config
       foundation-rails
       friendly_id
-      nokogiri (= 1.6.8)
+      nokogiri
       pg (~> 0.18)
       rails (~> 5.0.0)
       redcarpet
@@ -52,7 +52,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    arel (7.1.2)
+    arel (7.1.4)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -86,11 +86,9 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     nio4r (1.2.1)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     pg (0.19.0)
-    pkg-config (1.1.7)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
