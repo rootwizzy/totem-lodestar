@@ -5,8 +5,11 @@
     = p_render 'navigation/side_nav'
 
   .medium-6.column.small-order-3.medium-order-2
+    .article_updated 
+      | Updated on - #{@article.friendly_updated_at}
     .markdown
-      = markdown(@body)
+      = markdown(@article.body)
+
 
   .medium-3.column.small-order-2.medium-order-3
     = p_render 'navigation/table_of_contents'

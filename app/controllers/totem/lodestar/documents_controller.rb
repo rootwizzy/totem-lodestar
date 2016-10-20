@@ -1,7 +1,7 @@
 module Totem
   module Lodestar
     class DocumentsController < ApplicationController
-      def show; @body = @document.body end
+      def show; @article = @document end
     end
   end
 end
