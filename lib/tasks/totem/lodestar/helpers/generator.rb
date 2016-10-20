@@ -42,6 +42,7 @@ module Totem
           return files, dirs
         end
 
+        # Takes current directory and creates the sections array for the hash
         def build_sections_array(sections, cur)
           build_array do |arr|
             change_to(cur) do
@@ -50,32 +51,27 @@ module Totem
           end
         end
 
+        # Takes current directory and creates the files array for the hash
         def build_files_array(files, dir)
           build_array {|arr| files.each {|file| arr.push(create_document_object(file, dir))}}
         end
 
+        # Creates documents objects to store in the document arrays
         def create_document_object(file, dir)
           document = nil
           change_to(dir) {|dir| document = {title: file, path: dir + '/' + file}}
           document
         end
 
+        # Creates sections objects to store in the sections array
         def create_section_object(dir)
           section = {title: dir}
           section = add_files_and_sections(dir, section)
         end
 
-        def build_array
-          arr = []
-          yield(arr)
-          arr
-        end
+        def build_array; arr = []; yield(arr); arr end
+        def change_to(dir, back=true); Dir.chdir(dir); yield(Dir.pwd); Dir.chdir('..') if back; end
 
-        def change_to(dir, back=true)
-          Dir.chdir(dir)
-          yield(Dir.pwd)
-          Dir.chdir('..') if back
-        end
       end
 
       module Migrator
@@ -172,6 +168,7 @@ module Totem
           order = set_order_from_title(document[:title])
           obj   = document_class.find_or_create_by(title: document[:title], section_id: document[:section_id], version_id: document[:version_id])
           document_class.find(obj) ## Hacky to generate the :slug for FriendlyId
+          obj.updated_at = Time.now unless obj.body.eql? document[:body]
           obj.body  = document[:body]
           if order then obj.order = order else obj.order = nil end
           obj.save
@@ -180,6 +177,7 @@ module Totem
 
         def get_or_create_version(title, text)
           version      = version_class.find_or_create_by(title: title)
+          version.updated_at = Time.now unless version.body.eql? text
           version.body = text if text
           version.save
           add_version(version)
