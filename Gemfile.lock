@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    totem-lodestar (0.3.3)
+    totem-lodestar (0.3.6)
       coderay
       config
       foundation-rails
@@ -146,7 +146,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rake
   totem-lodestar!
 
 BUNDLED WITH
