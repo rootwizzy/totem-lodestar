@@ -5,6 +5,7 @@ require 'redcarpet'
 require 'slim'
 require 'foundation-rails'
 require 'coderay'
+require "font-awesome-rails"
 
 module Totem
   module Lodestar

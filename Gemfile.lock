@@ -4,6 +4,7 @@ PATH
     totem-lodestar (0.3.7)
       coderay
       config
+      font-awesome-rails
       foundation-rails
       friendly_id
       nokogiri
@@ -66,7 +67,9 @@ GEM
     deep_merge (1.1.1)
     erubis (2.7.0)
     execjs (2.7.0)
-    foundation-rails (6.2.3.0)
+    font-awesome-rails (4.6.3.1)
+      railties (>= 3.2, < 5.1)
+    foundation-rails (6.2.4.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
       sprockets-es6 (>= 0.9.0)

@@ -11,12 +11,12 @@
 // about supported directives.
 //
 //= require foundation
-//= require_tree .
+// = require_tree .
 var ready;
 ready = function() {
   $(document).foundation();
   enable_smooth_scrolling();
+  enable_collapse_sidebar();
 };
 
-$(document).ready(ready);
 $(document).on('turbolinks:load', ready);
