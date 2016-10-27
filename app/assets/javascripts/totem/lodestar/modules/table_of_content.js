@@ -4,7 +4,7 @@ TotemLodestar._modules['table_of_contents'] = {
   },
 
   highlight: function(options) {
-    console.log('WRONG')
+    
   },
 
   smooth_scroll: function(options) {
