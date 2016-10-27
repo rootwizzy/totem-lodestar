@@ -4,7 +4,7 @@ module Totem
       def show; @article = @version end
 
       def index
-        redirect_to action: "show", version_id: Version.last.slug if Settings.modules.version_redirect
+        redirect_to action: "show", version_id: Version.last.slug if Settings.modules.version.index_redirect
         @versions = Version.all
       end
     end

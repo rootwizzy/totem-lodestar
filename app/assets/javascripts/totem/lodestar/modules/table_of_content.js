@@ -1,3 +1,32 @@
+TotemLodestar._modules['table_of_contents'] = {
+  init: function(options) {
+    TotemLodestar.load_module(this, options)
+  },
+
+  highlight: function(options) {
+    console.log('WRONG')
+  },
+
+  smooth_scroll: function(options) {
+
+    $('a[href^="#"]').on('click',function (e) {
+      e.preventDefault();
+
+      var target = this.hash;
+      var $target = $(target);
+
+      $('html, body').stop().animate({
+          'scrollTop': $target.offset().top
+      }, 250, 'swing', function () {
+          window.location.hash = target;
+      });
+    });
+  },
+}
+
+
+
+
 // ticking     = false;
 // header_objs = []
 // cur_region  = null
@@ -44,23 +73,6 @@
 // }
 
 
-// $(function(){
-//   // set_document_positions()
-//   enable_smooth_scrolling()
-// })
 
 
-function enable_smooth_scrolling() {
-  $('a[href^="#"]').on('click',function (e) {
-    e.preventDefault();
 
-    var target = this.hash;
-    var $target = $(target);
-
-    $('html, body').stop().animate({
-        'scrollTop': $target.offset().top
-    }, 250, 'swing', function () {
-        window.location.hash = target;
-    });
-  });
-}

@@ -16,6 +16,7 @@ module Totem
         invoke "totem:lodestar:install:routes"
         invoke "totem:lodestar:install:documents"
         invoke "totem:lodestar:install:travis_ci", [file_name]
+        invoke "totem:lodestar:install:views", [file_name]
       end
 
     end

@@ -10,13 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require foundation
+// = require foundation
 // = require_tree .
-var ready;
 ready = function() {
+  TotemLodestar.load();
   $(document).foundation();
-  enable_smooth_scrolling();
-  enable_collapse_sidebar();
 };
 
 $(document).on('turbolinks:load', ready);
