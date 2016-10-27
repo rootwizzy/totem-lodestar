@@ -14,15 +14,7 @@ before_script:
 script:
 # - RAILS_ENV=test bundle exec rake db:migrate
 # - bundle exec rake db:test:prepare
-- bundle exec rake
+- bundle exec rake test
 branches:
   only:
   - master
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: TzxufipsFYSvAdCqyGVytpb0CWI8Z9npoDoxgUnhdj4qGVHasSRdjl4OMusW2nNErgbStVRA++mn3UdFpqNFkqOq8MuDP/dxrxl/pxWga9qs7W/HlFLeQziVaG3QpRw4V/VIyCpxZ/zXexRws3oArCm3T1OsTuEYSTmRDBJ3692+ArduJ64Tufq1Tt1I7jJMX+fzeS6KzH/EUi4zjSlM4aQoNTzPPOSROF2Bi+/fcwvaGjmtOeG87UOtdsfhpSRgW5oFHGa6bNKw575YaSsthyReuJOTTvlyUjk1zMY6IoCcnXW8aWXTEO+G0LJNYA6Z2LKlOgg22ZR6S2Syw/43wcOH3lbA2yqEBrS5PO35o/RgJKT2fNcZP5aLajTEIWtCw24+qpZacLTsBNEjRGmW9UrjPe2s0z8iP5S3E61gftKANfCsT+M0s2kCJJdamP5WcA8Az3G6ey5C0x31zGdz62un9SJcjkCuAPE+UFiysyEDnZvVwk85IbUR4M+MBbcNuXycnqhWeHLUmCMNFpSse6vAv1Ifj8k0D82HqOQ5d1dm8LR5QsoWe2C4vQGiEoiUTj8CzDkfFIW7TRWgyG3sL8WlZkQv/95vo/Ss27FceBIePueesKoiqXHBVOE3svGYSbfCkVrE62scAcyKQSYRNFpCt+qzYHiqGTBmn8N2zlo=
-#   on: master
-#   run:
-#   - rails db:migrate
-#   - rails totem:lodestar:generate
