@@ -14,7 +14,7 @@ end
 #   rdoc.rdoc_files.include('lib/**/*.rb')
 # end
 
-APP_RAKEFILE = File.expand_path("./test/dummy/Rakefile", __FILE__)
+APP_RAKEFILE = File.expand_path("../test/dummy/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
 load 'rails/tasks/statistics.rake'
 
