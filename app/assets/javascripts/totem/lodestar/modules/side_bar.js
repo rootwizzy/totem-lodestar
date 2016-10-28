@@ -4,15 +4,18 @@ TotemLodestar._modules['side_bar'] = {
   },
   
   collapse: function(options) {
+    expanded_icon  = options['expanded_icon']
+    collapsed_icon = options['collapsed_icon']
+
     $('.side-nav_section-header').on('click',function (e) {
       e.preventDefault();
       $(this).parent().toggleClass("collapsed");
 
       icon = $(this).children()[0]
-      if(icon.className == 'fa fa-minus-square') {
-        icon.className = 'fa fa-plus-square'
+      if(icon.className == collapsed_icon) {
+        icon.className = expanded_icon
       } else {
-        icon.className = 'fa fa-minus-square'
+        icon.className = collapsed_icon
       }
     });
   }

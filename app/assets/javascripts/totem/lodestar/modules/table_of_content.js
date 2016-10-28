@@ -8,6 +8,7 @@ TotemLodestar._modules['table_of_contents'] = {
   },
 
   smooth_scroll: function(options) {
+    speed = options['speed']
 
     $('a[href^="#"]').on('click',function (e) {
       e.preventDefault();
@@ -17,7 +18,7 @@ TotemLodestar._modules['table_of_contents'] = {
 
       $('html, body').stop().animate({
           'scrollTop': $target.offset().top
-      }, 250, 'swing', function () {
+      }, speed, 'swing', function () {
           window.location.hash = target;
       });
     });
