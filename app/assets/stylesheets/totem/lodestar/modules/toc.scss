@@ -33,6 +33,16 @@
         background-color: $toc_list-link-bg-hover;
       }
 
+      &.active {
+        background-color: $toc_list-link-bg-active;
+        color:            $toc_list-link-color-active;
+
+        &:hover{ 
+          background-color: $toc_list-link-bg-active-hover;
+          color:            $toc_list-link-color-active-hover;
+        }
+      }
+
       &.h1 {margin-left: 0;}
       &.h2 {margin-left: $toc_list-link-indent-base;}
       &.h3 {margin-left: $toc_list-link-indent-base*2;}
