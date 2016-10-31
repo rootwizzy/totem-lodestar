@@ -2,6 +2,14 @@
   margin-bottom: $md_document-spacing;
 
   /****
+  Anchors
+  *****/
+  a { 
+    color:           $md-a_color;
+    text-decoration: $md-a_decoration;
+  }
+
+  /****
   Paragraphs
   ****/
   p {
@@ -9,15 +17,22 @@
     font-weight: $md-p_weight;
   }
 
+  strong {
+    color: $md-strong_color;
+  }
+
   /****
   Codeblocks
   ****/
   .CodeRay {
+    color: $body_color;
+    font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
     .code {
       background:    $md-codeblock_bg;
       padding:       $md-codeblock_padding;
-      margin:        $md-codeblock_padding;
+      margin:        $md-codeblock_margin;
       border-radius: $md-codeblock_radius;
+      border-left:   $md-codeblock_border-left;
     }
   }
 
@@ -28,8 +43,10 @@
     color:            $md-codespan_color;
     background-color: $md-codespan_bg;
     border-radius:    $md-codespan_radius;
+    border:           $md-codespan_border;
     font-family:      $md-codespan_font;
     font-size:        $md-codespan_font-size;
+    font-weight:      $md-codespan_font-weight;
     padding:          $md-codespan_padding;
     overflow:         auto;
   }

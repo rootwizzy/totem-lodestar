@@ -26,20 +26,25 @@
       font-weight:      $toc_list-link-weight;    
       line-height:      $toc_list-link-line-height;
       font-size:        $toc_list-link-size;
-
+      border-bottom:    $toc_list-link-border-bottom;
       display: block;
 
       &:hover {
+        color:            $toc_list-link-color-hover;
         background-color: $toc_list-link-bg-hover;
+        border-bottom:    $toc_list-link-border-bottom-hover;
+        text-decoration:  underline;
       }
 
       &.active {
         background-color: $toc_list-link-bg-active;
         color:            $toc_list-link-color-active;
+        border-bottom:    $toc_list-link-border-bottom-active;
 
         &:hover{ 
           background-color: $toc_list-link-bg-active-hover;
           color:            $toc_list-link-color-active-hover;
+          border-bottom:    $toc_list-link-border-bottom-active-hover;
         }
       }
 

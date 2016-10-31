@@ -33,20 +33,20 @@
 
         &:hover {
           border:           $side-nav_link-border-hover;
-          border-left:      $side-nav_link-border-hover;
+          border-left:      $side-nav_link-border-left-hover;
           color:            $side-nav_link-color-hover;
           background-color: $side-nav_link-bg-hover;
         }
         &.active {
           background-color: $side-nav_link-bg-active;
           border:           $side-nav_link-border-active;
-          border-left:      $side-nav_border-left-active;
+          border-left:      $side-nav_link-border-left-active;
           color:            $side-nav_link-color-active;
 
           &:hover {
             background-color: $side-nav_link-bg-active-hover;
             border:           $side-nav_link-border-active-hover;
-            border-left:      $side-nav_border-left-active-hover;
+            border-left:      $side-nav_link-border-left-active-hover;
             color:            $side-nav_link-color-active-hover;
           }
         }

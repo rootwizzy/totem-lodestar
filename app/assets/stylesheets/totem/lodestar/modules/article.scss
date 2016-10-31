@@ -1,4 +1,5 @@
 .article_updated {
-  font-size:  $small-font;
-  font-style: italic;
+  color: $article_updated-color;
+  font-size:  $article_updated-font-size;
+  font-style: $article_updated-font-style;
 }
