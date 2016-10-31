@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    totem-lodestar (0.4.0)
+    totem-lodestar (0.4.1)
       coderay
       config
       font-awesome-rails
@@ -67,7 +67,7 @@ GEM
     deep_merge (1.1.1)
     erubis (2.7.0)
     execjs (2.7.0)
-    font-awesome-rails (4.6.3.1)
+    font-awesome-rails (4.7.0.0)
       railties (>= 3.2, < 5.1)
     foundation-rails (6.2.4.0)
       railties (>= 3.1.0)
