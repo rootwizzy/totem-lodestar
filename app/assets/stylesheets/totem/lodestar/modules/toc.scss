@@ -29,6 +29,9 @@
       border-bottom:    $toc_list-link-border-bottom;
       display: block;
 
+      transition-property:  background-color;
+      transition-duration: $toc_list-link-transition-duration;
+
       &:hover {
         color:            $toc_list-link-color-hover;
         background-color: $toc_list-link-bg-hover;
