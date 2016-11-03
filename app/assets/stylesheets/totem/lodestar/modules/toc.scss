@@ -15,6 +15,10 @@
     width:           100%;
     overflow-y:      $toc_list-overflowy;
     height:          $toc_list-height;
+
+    @include breakpoint(small only) {
+      height: auto;
+    }
     
     a.toc_list-item::before {content: $toc_list-link-before-content;}
     a.toc_list-item {

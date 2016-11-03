@@ -1,6 +1,6 @@
 TotemLodestar._modules['side_bar'] = {
-  init: function(options) {
-    TotemLodestar.load_module(this, options)
+  init: function(id, options) {
+    TotemLodestar.load_module(id, this, options)
   },
   
   collapse: function(options) {

@@ -4,3 +4,11 @@ body {
   font-family:      $body_font;
   font-size:        $body_font-size;
 }
+
+.full {
+  width:        100%;
+  margin-left:  auto;
+  margin-right: auto;
+  max-width:    initial;
+}
+

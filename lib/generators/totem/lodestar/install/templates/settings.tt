@@ -2,4 +2,24 @@ text:
   title:     <%= name.humanize.capitalize %>
   sub-title: Add your subtitle in config/settings.yml!
 modules:
-  version_redirect: true
+  layout:
+    full:
+      enabled: true
+
+  versions:
+    index_redirect: true
+
+  side_bar:
+    collapse:
+      enabled:        true
+      expanded_icon:  'fa fa-minus-square right'
+      collapsed_icon: 'fa fa-plus-square right'
+
+  table_of_contents:
+    smooth_scroll:
+      enabled: true
+      speed:   300 # Milliseconds
+    highlight: 
+      enabled: true
+
+ 

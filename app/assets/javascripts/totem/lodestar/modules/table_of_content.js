@@ -1,6 +1,6 @@
 TotemLodestar._modules['table_of_contents'] = {
-  init: function(options) {
-    TotemLodestar.load_module(this, options)
+  init: function(id, options) {
+    TotemLodestar.load_module(id, this, options)
   },
 
 

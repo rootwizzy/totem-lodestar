@@ -1,15 +1,16 @@
 = p_render 'navigation/top_nav'
 
-.row.medium-unstack
-  .medium-3.column.small-order-1.medium-order-1
+.article
+  .article_side-nav-col
+    = p_render 'shared/setting_actions'
     = p_render 'navigation/side_nav'
 
-  .medium-6.column.small-order-3.medium-order-2
-    .article_updated 
+  .article_content-col
+    .article_updated-on
       | Updated on - #{@article.friendly_updated_at}
     .markdown
       = markdown(@article.body)
 
 
-  .medium-3.column.small-order-2.medium-order-3
+  .article_toc-col
     = p_render 'navigation/table_of_contents'
