@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    totem-lodestar (0.4.1)
+    totem-lodestar (0.4.5)
       coderay
       config
       font-awesome-rails
