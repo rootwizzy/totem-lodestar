@@ -2,11 +2,15 @@
   margin: 0 0 $padding 0;
 
   .setting_action {
-    display: inline-block;
+    display:          inline-block;
     background-color: $secondary;
     padding:          $padding/2;
     border-radius:    $border-radius;
-    margin-right: $padding/2;
+    margin-right:     $padding/2;
+
+    &:hover {
+      background-color: darken($secondary, 5%)
+    }
 
     &:last-of-type {
       margin-right: 0;
