@@ -27,5 +27,6 @@ Gem::Specification.new do |s|
   s.add_dependency "foundation-rails"
   s.add_dependency "nokogiri"
   s.add_dependency "font-awesome-rails"
+  s.add_dependency "coffee-rails"
 end
 

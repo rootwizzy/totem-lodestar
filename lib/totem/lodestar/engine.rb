@@ -1,4 +1,4 @@
-## Requires are used to enforce gems are loaded in the application.
+## Requires are used to enforce gems are loaded in the host application.
 require 'friendly_id'
 require 'config'
 require 'redcarpet'
