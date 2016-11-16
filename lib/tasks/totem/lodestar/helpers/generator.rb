@@ -1,25 +1,41 @@
 module Totem
   module Lodestar
-    module Generator  
+    ##
+    # The Generator is invoked the Totem:Lodestar:Generate rails task. Its core functionality is to create database records based on the current markdown documents in the host application. The {Totem::Lodestar::Generator::Parser} scrapes the documents directory and creates a hash structure that will be used by the {Totem::Lodestar::Generator::Migrator} to create the database records.
+    # @see Totem::Lodestar::Generator::Migrator
+    # @see Totem::Lodestar::Generator::Parser
+    ##
+    module Generator
+      ##
+      # Scrapes {Totem::Lodestar::Generator::Parser::DOCUMENTS_DIR} to build the doc_hash which will be used by the Migrator.
+      ##
       module Parser
         DOCUMENTS_DIR = '/public/documents'
 
+        # @!attribute doc_hash
+        #   @return [Hash] documents document directory hash mapping
+
         attr_accessor :doc_hash
 
-        ## Initializes module attributes when included in the rake task
+        ##
+        # Initializes the parser module when included in the rake task
+        # Creates the empty {doc_hash} and changes the current directory to {DOCUMENTS_DIR}
+        # @param base [Class]
+        ##
         def self.included(base)
           Generator::Parser::doc_hash = {}
           change_to(Dir.pwd + DOCUMENTS_DIR, false) {}
         end
 
-        ## Called by the rake task
+        # Entry method by the rake task to start building the document hash
+        # @return [Hash] fully mapped document directory hash map
         def generate_document_structure; build_document_hash end
 
-        private
+        # Starts recursive mapping of the document directory
+        #
+        # @note Sets initial documents versions based of a file directory glob then iterates each version with {add_files_and_sections} to each versions base hash
         def build_document_hash
-          ## Generate the base version keys for the doc_hash
           Dir.glob("*.*.*").each {|version| Generator::Parser::doc_hash[version] = {};}
-          ## Recursively generates the document structure for each version folder
           Generator::Parser::doc_hash.each {|version, hash| add_files_and_sections(version, hash);} 
         end
 
@@ -71,7 +87,6 @@ module Totem
 
         def build_array; arr = []; yield(arr); arr end
         def change_to(dir, back=true); Dir.chdir(dir); yield(Dir.pwd); Dir.chdir('..') if back; end
-
       end
 
       module Migrator
@@ -200,7 +215,6 @@ module Totem
             return order
           end
         end
-
       end
     end
   end

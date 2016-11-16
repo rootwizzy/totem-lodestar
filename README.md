@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/rootwizzy/totem-lodestar.svg?branch=master)](https://travis-ci.org/rootwizzy/totem-lodestar)
 
 # Totem::Lodestar
-A gem built to include base functonaility for markdown based documentation rails app.
+A gem built to include base functionality for markdown based documentation rails app.
 
 ## Installation
 > Hey!! This process should be done on a fresh installiation of Rails 5.0+, some files will be force replaced and data may be lost to default values!

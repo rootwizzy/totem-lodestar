@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    totem-lodestar (0.4.5)
+    totem-lodestar (0.4.6)
       coderay
       coffee-rails
       config
@@ -13,6 +13,7 @@ PATH
       rails (~> 5.0.0)
       redcarpet
       slim
+      yard
 
 GEM
   remote: https://rubygems.org/
@@ -152,6 +153,7 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    yard (0.9.5)
 
 PLATFORMS
   ruby
