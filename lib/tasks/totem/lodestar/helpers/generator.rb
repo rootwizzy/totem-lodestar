@@ -148,7 +148,7 @@ module Totem
         def migrate_sections(sections, version, parent=nil)
           sections.each do |section|
             section_record = get_or_create_section(section, version, parent)
-            migrate_documents(section['files'], section_record, version)
+            if section['files'] then migrate_documents(section['files'], section_record, version) end
             if section['sections'] then migrate_sections(section['sections'], version, section_record) end
           end
         end

@@ -77,30 +77,35 @@ $side-nav_header-size:           $small-font;
 $side-nav_header-letter-spacing: 0;
 
 
-$side-nav_link-color:       $black;
-$side-nav_link-bg:          transparent;
-$side-nav_link-border:      none;
-$side-nav_link-border-left: none;
-$side-nav_link-spacing:     0;
-$side-nav_link_padding:     $padding/2 $padding;
-$side-nav_link-radius:      $border-radius;
-$side-nav_link-size:        $small-font;
-$side-nav_link-line-height: 1.6;
+$side-nav_link-color:            $black;
+$side-nav_link-bg:               transparent;
+$side-nav_link-border:           none;
+$side-nav_link-border-left:      none;
+$side-nav_link-spacing:          0;
+$side-nav_link_padding:          $padding/2 $padding;
+$side-nav_link-radius:           $border-radius;
+$side-nav_link-size:             $small-font;
+$side-nav_link-line-height:      1.6;
+$side-nav_link-weight:           $regular;
+$side-nav_link-decoration-hover: underline;
 
 $side-nav_link-bg-hover:          $light-blue;
 $side-nav_link-border-hover:      none;
 $side-nav_link-border-left-hover: none;
 $side-nav_link-color-hover:       $black;
+$side-nav_link-weight-hover:      $regular;
 
 $side-nav_link-bg-active:     $blue;
 $side-nav_link-border-active: none;
 $side-nav_border-left-active: none;
 $side-nav_link-color-active:  $white;
+$side-nav_link-weight-active: $regular;
 
 $side-nav_link-bg-active-hover:     $dark-blue;
 $side-nav_link-border-active-hover: none;
 $side-nav_border-left-active-hover: none;
 $side-nav_link-color-active-hover:  $white;
+$side-nav_link-weight-active-hover: $regular;
 
 /****
 Table of Contents

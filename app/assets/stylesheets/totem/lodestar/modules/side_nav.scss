@@ -1,6 +1,8 @@
 .side-nav {
 
   .side-nav_section {
+    margin: $side-nav_spacing;
+
     .side-nav_section-header {
       padding:          $side-nav_header-padding;
       border-radius:    $side-nav_header-radius;
@@ -12,13 +14,12 @@
       letter-spacing:   $side-nav_header-letter-spacing;
 
       i.fa {
-        float: right;
+        float:      right;
+        margin-top: 0.5vh;
       }
     }
 
     .side-nav_section-documents {
-      margin:           $side-nav_spacing;
-
       .side-nav_section-documents-link {
         display:          block;
         padding:          $side-nav_link-padding;
@@ -29,25 +30,31 @@
         border-left:      $side-nav_link-border-left;
         border-radius:    $side-nav_link-radius;
         font-size:        $side-nav_link-size;
+        font-weight:      $side-nav_link-weight;
         line-height:      $side-nav_link-line-height;
 
         &:hover {
+          background-color: $side-nav_link-bg-hover;
           border:           $side-nav_link-border-hover;
           border-left:      $side-nav_link-border-left-hover;
           color:            $side-nav_link-color-hover;
-          background-color: $side-nav_link-bg-hover;
+          font-weight:      $side-nav_link-weight-hover;
+          text-decoration:  $side-nav_link-decoration-hover
         }
+
         &.active {
           background-color: $side-nav_link-bg-active;
           border:           $side-nav_link-border-active;
           border-left:      $side-nav_link-border-left-active;
           color:            $side-nav_link-color-active;
+          font-weight:      $side-nav_link-weight-active;
 
           &:hover {
             background-color: $side-nav_link-bg-active-hover;
             border:           $side-nav_link-border-active-hover;
             border-left:      $side-nav_link-border-left-active-hover;
             color:            $side-nav_link-color-active-hover;
+            font-weight:      $side-nav_link-weight-active-hover;
           }
         }
 

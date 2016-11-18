@@ -25,6 +25,10 @@
   }
 
   .article_content-col {
+    border:           1px solid $ownership;
+    border-radius:    $border-radius;
+    background-color: $primary;
+
     @include breakpoint(small only) {
       @include flex-grid-order(3);
     }
