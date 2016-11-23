@@ -26,8 +26,10 @@
   ****/
   .CodeRay {
     color: $body_color;
-    font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
     .code {
+      pre {font-family:   $md-codeblock_font;}
+      font-family:   $md-codeblock_font;
+
       background:    $md-codeblock_bg;
       padding:       $md-codeblock_padding;
       margin:        $md-codeblock_margin;
