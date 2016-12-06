@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    totem-lodestar (0.4.7)
+    totem-lodestar (0.4.8)
       coderay
       coffee-rails
       config
