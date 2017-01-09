@@ -1,6 +1,6 @@
 module Totem
   module Lodestar    
-    class VersionsController < ApplicationController
+    class VersionsController < GuidesController
       def show; @article = @version end
 
       def index
