@@ -14,12 +14,27 @@ module Totem
             create_api_record(repo)
           end
 
-          build_groc_assets
+          build_behavior_file
+          build_style_file
         end
       end
 
+      private
+
+      def primary_repo_path
+        "/api/" + Settings.modules.api.repositories.first.name
+      end
+
       def clone_repo(repo)
-        sh "git clone -b #{repo.branch} #{repo.url}"
+        sh "curl -H 'Authorization: token $TOKEN' -L https://api.github.com/repos/sixthedge/#{repo.name}/tarball > #{repo.name}.tar.gz"
+        sh "tar -xvzf #{repo.name}.tar.gz"
+        sh "rm #{repo.name}.tar.gz"
+        Dir.foreach(Dir.pwd) do |dir|
+          if dir.include?(repo.name)
+            sh "cp #{Dir.pwd + '/' + dir} #{Dir.pwd + '/' + repo.name} -r"
+            sh "rm #{Dir.pwd + '/' + dir} -r"
+          end
+        end
       end
 
       def run_groc_cli(repo)
@@ -42,11 +57,6 @@ module Totem
         bin += options['glob']
       end
 
-      def build_groc_assets
-        build_behavior_file
-        build_style_file
-      end
-
       def build_behavior_file
         create_file("behavior.js", "/api/assets")
         scrape_jquery_min
@@ -67,9 +77,7 @@ module Totem
       end
    
       def scrape_styles
-        Dir.chdir(Rails.application.root)
-        Dir.chdir("api")
-        Dir.chdir("ethinkspace-client")
+        Dir.chdir(File.join(Rails.application.root, primary_repo_path))
 
         lines = []
         File.open(Dir.pwd + '/assets/style.css', "r") do |file|
@@ -78,47 +86,36 @@ module Totem
           end
         end
 
-        Dir.chdir('..')
-        Dir.chdir('assets')
-
-        File.open('style.css', "w+") do |f|
-          f.write(lines)
-        end
-
-        Dir.chdir(Rails.application.root)
+        write_file('style.css', "w+", lines)
       end
 
       def scrape_jquery_min
-        Dir.chdir(Rails.application.root)
-        Dir.chdir("api")
-        Dir.chdir("ethinkspace-client")
+        lines = []
+        scan  = true
 
-        lines = ""
+        Dir.chdir(File.join(Rails.application.root, primary_repo_path))
+
         File.open(Dir.pwd + '/assets/behavior.js', "r") do |file|
-          lines = file.readlines[1]
+          file.each_line do |l| 
+            lines.push(l) if scan == true
+
+            scan = false if l.eql?("  var MAX_FILTER_SIZE, appendSearchNode, buildNav, buildTOCNode, clearFilter, clearHighlight, currentNode$, currentQuery, fileMap, focusCurrentNode, highlightMatch, moveCurrentNode, nav$, searchNodes, searchableNodes, selectNode, selectNodeByDocumentPath, setCurrentNodeExpanded, setTableOfContentsActive, tableOfContents, toc$, toggleTableOfContents, visitCurrentNode;\n")
+          end
         end
 
-        Dir.chdir('..')
-        Dir.chdir('assets')
-
-        File.open('behavior.js', "w+") do |f|
-          f.write(lines)
-        end
-
-        Dir.chdir(Rails.application.root)
+        write_file('behavior.js', "a", lines)
       end
 
       def scrape_table_of_contents
         files = []
-        scan = false
+        scan  = false
 
-        Dir.chdir(Rails.application.root)
-        Dir.chdir("api")
+        Dir.chdir(File.join(Rails.application.root, "/api"))
+
         Dir.foreach(Dir.pwd) do |repo|
           unless repo.eql?(".") or repo.eql?("..") or repo.eql?("assets")
             toc_lines = []
-            Dir.chdir(repo)
-            Dir.chdir('assets')
+            Dir.chdir(File.join(Rails.application.root, '/api/', repo, 'assets'))
             File.open(Dir.pwd + '/behavior.js', "r") do |file|
               file.each_line do |line|
                 scan = true if line.eql?("  tableOfContents = [\n")
@@ -130,31 +127,31 @@ module Totem
             toc_lines.pop
             toc_lines.shift
 
+            toc_lines.pop
+            toc_lines.push("    },\n")
+
             files.push(toc_lines)
-            Dir.chdir('..')
-            Dir.chdir('..')
           end
         end
 
         files.unshift(["  tableOfContents = [\n"])
         files.push(["  ];\n"])
 
-        Dir.chdir('assets')
+        Dir.chdir(File.join(Rails.application.root, "/api/assets"))
+
         File.open('behavior.js', "a") do |f|
           files.each do |toc_lines|
             toc_lines.each { |l| f.write(l) }
           end
         end
-
-        Dir.chdir(Rails.application.root)
       end
 
       def scrape_groc_helpers
-        Dir.chdir(Rails.application.root)
-        Dir.chdir("api")
-        Dir.chdir("ethinkspace-client")
-        scan = false
+        scan  = false
         lines = []
+
+        Dir.chdir(File.join(Rails.application.root, primary_repo_path))
+
         File.open(Dir.pwd + '/assets/behavior.js', "r") do |file|
           file.each_line do |line|
             scan = true if line.eql?("  nav$ = null;\n")
@@ -162,14 +159,19 @@ module Totem
           end
         end
 
-        Dir.chdir('..')
-        Dir.chdir('assets')
+        write_file('behavior.js', "a", lines)
+      end
 
-        File.open('behavior.js', "a") do |f|
-          lines.each {|l| f.write(l)}
+      def write_file(file, mode="w+", lines)
+        Dir.chdir(File.join(Rails.application.root, "/api/assets"))
+
+        File.open(file, mode) do |f|
+          if lines.kind_of?(Array)
+            lines.each {|l| f.write(l)}
+          else
+            f.write(lines)
+          end
         end
-
-        Dir.chdir(Rails.application.root)
       end
 
     end
