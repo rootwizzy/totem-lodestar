@@ -26,7 +26,7 @@ module Totem
       end
 
       def clone_repo(repo)
-        sh "curl -H 'Authorization: token $TOKEN' -L https://api.github.com/repos/sixthedge/#{repo.name}/tarball > #{repo.name}.tar.gz"
+        sh "curl -H 'Authorization: token #{ENV['GITHUB_TOKEN']}' -L https://api.github.com/repos/sixthedge/#{repo.name}/tarball > #{repo.name}.tar.gz"
         sh "tar -xvzf #{repo.name}.tar.gz"
         sh "rm #{repo.name}.tar.gz"
         Dir.foreach(Dir.pwd) do |dir|
