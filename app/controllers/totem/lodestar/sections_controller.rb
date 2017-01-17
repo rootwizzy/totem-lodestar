@@ -1,6 +1,6 @@
 module Totem
   module Lodestar
-    class SectionsController < ApplicationController
+    class SectionsController < GuidesController
     end
   end
 end

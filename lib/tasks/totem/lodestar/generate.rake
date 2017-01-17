@@ -1,10 +1,11 @@
-require_relative 'helpers/generator'
+require_relative 'helpers/guides_generator'
+require_relative 'helpers/api_generator'
 
 namespace :totem do
   namespace :lodestar do
     desc "Parses markdown documents then migrates to the database"
     task generate: :environment do
-      include Totem::Lodestar::Generator::Migrator, Totem::Lodestar::Generator::Parser
+      include Totem::Lodestar::GuidesGenerator::Migrator, Totem::Lodestar::GuidesGenerator::Parser
       generate_document_structure
       migrate_document_structure
     end
@@ -12,6 +13,13 @@ namespace :totem do
     desc "Regenerates all slugs"
     task reset_slugs: :environment do
       [Version, Section, Document].each {|klass| klass.all.each {|record| record.slug = nil; record.save}}
+    end
+
+    desc "Generate API documentation"
+    task :api, [:build] => [:environment] do
+      |t, args|
+      include Totem::Lodestar::ApiGenerator
+      generate_api_documents(args.build)
     end
   end
 end

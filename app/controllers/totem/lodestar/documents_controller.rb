@@ -1,6 +1,6 @@
 module Totem
   module Lodestar
-    class DocumentsController < ApplicationController
+    class DocumentsController <GuidesController
       def show; @article = @document end
     end
   end

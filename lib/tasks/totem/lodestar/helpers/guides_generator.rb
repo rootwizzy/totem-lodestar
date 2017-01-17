@@ -1,6 +1,6 @@
 module Totem
   module Lodestar
-    module Generator  
+    module GuidesGenerator  
       module Parser
         DOCUMENTS_DIR = '/public/documents'
 
@@ -8,7 +8,7 @@ module Totem
 
         ## Initializes module attributes when included in the rake task
         def self.included(base)
-          Generator::Parser::doc_hash = {}
+          GuidesGenerator::Parser::doc_hash = {}
           change_to(Dir.pwd + DOCUMENTS_DIR, false) {}
         end
 
@@ -18,9 +18,9 @@ module Totem
         private
         def build_document_hash
           ## Generate the base version keys for the doc_hash
-          Dir.glob("*.*.*").each {|version| Generator::Parser::doc_hash[version] = {};}
+          Dir.glob("*.*.*").each {|version| GuidesGenerator::Parser::doc_hash[version] = {};}
           ## Recursively generates the document structure for each version folder
-          Generator::Parser::doc_hash.each {|version, hash| add_files_and_sections(version, hash);} 
+          GuidesGenerator::Parser::doc_hash.each {|version, hash| add_files_and_sections(version, hash);} 
         end
 
         ## Sets the files and sections keys for a given hash
@@ -69,8 +69,17 @@ module Totem
           section = add_files_and_sections(dir, section)
         end
 
-        def build_array; arr = []; yield(arr); arr end
-        def change_to(dir, back=true); Dir.chdir(dir); yield(Dir.pwd); Dir.chdir('..') if back; end
+        def build_array
+          arr = []
+          yield(arr)
+          arr 
+        end
+
+        def change_to(dir, back=true)
+          Dir.chdir(dir)
+          yield(Dir.pwd)
+          Dir.chdir('..') if back
+        end
 
       end
 
@@ -83,25 +92,25 @@ module Totem
         def document_class; Totem::Lodestar::Document end
 
         def self.included(base)
-          Generator::Migrator::migrated_versions  = []
-          Generator::Migrator::migrated_sections  = []
-          Generator::Migrator::migrated_documents = []
+          GuidesGenerator::Migrator::migrated_versions  = []
+          GuidesGenerator::Migrator::migrated_sections  = []
+          GuidesGenerator::Migrator::migrated_documents = []
 
-          Generator::Migrator::previous_versions  = []
-          Generator::Migrator::previous_sections  = []
-          Generator::Migrator::previous_documents = []
+          GuidesGenerator::Migrator::previous_versions  = []
+          GuidesGenerator::Migrator::previous_sections  = []
+          GuidesGenerator::Migrator::previous_documents = []
         end
 
-        def add_version(version);   Generator::Migrator::migrated_versions.push(version);   version  end
-        def add_section(section);   Generator::Migrator::migrated_sections.push(section);   section  end
-        def add_document(document); Generator::Migrator::migrated_documents.push(document); document end
+        def add_version(version);   GuidesGenerator::Migrator::migrated_versions.push(version);   version  end
+        def add_section(section);   GuidesGenerator::Migrator::migrated_sections.push(section);   section  end
+        def add_document(document); GuidesGenerator::Migrator::migrated_documents.push(document); document end
 
         ## Take document structure from the parser and get or create db records for them, then remove any
         ## documents that were not parsed to remove any deleted version/sections/documents.
         def migrate_document_structure
           set_previous_migrations
 
-          Generator::Parser::doc_hash.each do |version, data|
+          GuidesGenerator::Parser::doc_hash.each do |version, data|
             text = get_version_index_text(data['files'], version)
             version_record = get_or_create_version(version, text)
 
@@ -113,22 +122,22 @@ module Totem
         end
 
         def set_previous_migrations
-          Generator::Migrator::previous_versions  = version_class.all
-          Generator::Migrator::previous_sections  = section_class.all
-          Generator::Migrator::previous_documents = document_class.all
+          GuidesGenerator::Migrator::previous_versions  = version_class.all
+          GuidesGenerator::Migrator::previous_sections  = section_class.all
+          GuidesGenerator::Migrator::previous_documents = document_class.all
         end
 
         def destroy_removed_migrations
-          versions_to_remove = Generator::Migrator::previous_versions.to_a.keep_if do |version|
-            !Generator::Migrator::migrated_versions.include?(version)
+          versions_to_remove = GuidesGenerator::Migrator::previous_versions.to_a.keep_if do |version|
+            !GuidesGenerator::Migrator::migrated_versions.include?(version)
           end
 
-          sections_to_remove = Generator::Migrator::previous_sections.to_a.keep_if do |sections|
-            !Generator::Migrator::migrated_sections.include?(sections)
+          sections_to_remove = GuidesGenerator::Migrator::previous_sections.to_a.keep_if do |sections|
+            !GuidesGenerator::Migrator::migrated_sections.include?(sections)
           end
 
-          documents_to_remove = Generator::Migrator::previous_documents.to_a.keep_if do |document|
-            !Generator::Migrator::migrated_documents.include?(document)
+          documents_to_remove = GuidesGenerator::Migrator::previous_documents.to_a.keep_if do |document|
+            !GuidesGenerator::Migrator::migrated_documents.include?(document)
           end
 
           [versions_to_remove, sections_to_remove, documents_to_remove].each {|records| records.each {|record| record.destroy}}
