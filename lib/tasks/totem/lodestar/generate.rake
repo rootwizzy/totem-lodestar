@@ -19,7 +19,8 @@ namespace :totem do
     task :api, [:build] => [:environment] do
       |t, args|
       include Totem::Lodestar::ApiGenerator
-      generate_api_documents(args.build)
+      build = args.build.eql?("true") ? true : false
+      generate_api_documents(build)
     end
   end
 end
