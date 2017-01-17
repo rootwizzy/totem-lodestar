@@ -16,9 +16,10 @@ namespace :totem do
     end
 
     desc "Generate API documentation"
-    task api: :environment do
+    task :api, [:build] => [:environment] do
+      |t, args|
       include Totem::Lodestar::ApiGenerator
-      generate_api_documents
+      generate_api_documents(args.build)
     end
   end
 end

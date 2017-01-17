@@ -4,14 +4,23 @@ module Totem
       def self.included(base)
       end
         
-      def generate_api_documents
+      def generate_api_documents(build)
+        Settings.modules.api.repositories.each do |repo|
+          create_api_record(repo)
+        end
+
+        build_groc_documents if build
+      end
+
+      private
+
+      def build_groc_documents
         Dir.mktmpdir(nil, Dir.pwd) do |dir|
           Dir.chdir(dir)
 
           Settings.modules.api.repositories.each do |repo|
             clone_repo(repo)
             run_groc_cli(repo)
-            create_api_record(repo)
           end
 
           build_behavior_file
@@ -19,22 +28,21 @@ module Totem
         end
       end
 
-      private
-
       def primary_repo_path
         "/api/" + Settings.modules.api.repositories.first.name
       end
 
       def clone_repo(repo)
-        sh "curl -H 'Authorization: token #{ENV['GITHUB_TOKEN']}' -L https://api.github.com/repos/sixthedge/#{repo.name}/tarball > #{repo.name}.tar.gz"
-        sh "tar -xvzf #{repo.name}.tar.gz"
-        sh "rm #{repo.name}.tar.gz"
-        Dir.foreach(Dir.pwd) do |dir|
-          if dir.include?(repo.name)
-            sh "cp #{Dir.pwd + '/' + dir} #{Dir.pwd + '/' + repo.name} -r"
-            sh "rm #{Dir.pwd + '/' + dir} -r"
-          end
-        end
+        sh "git clone -b #{repo.branch} #{repo.url}"
+        # sh "curl -H 'Authorization: token #{ENV['GITHUB_TOKEN']}' -L https://api.github.com/repos/sixthedge/#{repo.name}/tarball > #{repo.name}.tar.gz"
+        # sh "tar -xvzf #{repo.name}.tar.gz"
+        # sh "rm #{repo.name}.tar.gz"
+        # Dir.foreach(Dir.pwd) do |dir|
+        #   if dir.include?(repo.name)
+        #     sh "cp #{Dir.pwd + '/' + dir} #{Dir.pwd + '/' + repo.name} -r"
+        #     sh "rm #{Dir.pwd + '/' + dir} -r"
+        #   end
+        # end
       end
 
       def run_groc_cli(repo)

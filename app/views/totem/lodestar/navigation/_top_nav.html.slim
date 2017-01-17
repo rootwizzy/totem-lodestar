@@ -1,9 +1,11 @@
 .top-nav
   .top-nav_menu.full
       .top-nav_menu-logo
-        a href='/'
-          img src=image_url("logo.png") width="64"
+        - if get_settings_text('logo')
+          a href='/'
+            img src=image_url("logo.png") width="64"
       .top-nav_menu-title
         = get_settings_text('title')
-        .sub-title
-          = get_settings_text('sub-title')
+        - if get_settings_text('sub-title')
+          .sub-title
+            = get_settings_text('sub-title')
