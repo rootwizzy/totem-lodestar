@@ -5,10 +5,11 @@ window.TotemLodestar._modules['table_of_contents'] =
 
   smooth_scroll: (options) ->
     speed = options['speed']
-    $('a[href^="#"]').on 'click', (e) ->
+    $('.toc_list').children().on 'click', (e) ->
       e.preventDefault()
       target = @hash
       $target = $(target)
+      console.log 'Target', $target
       $('html, body').stop().animate { 'scrollTop': $target.offset().top }, speed, 'swing', ->
         window.location.hash = target
         return
