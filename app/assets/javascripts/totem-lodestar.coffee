@@ -16,6 +16,6 @@
 
 ready =  ->
   TotemLodestar.load();
-  # $(document).foundation();
+  $(document).foundation();
 
 $(document).on('turbolinks:load', ready);

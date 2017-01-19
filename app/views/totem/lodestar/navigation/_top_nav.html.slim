@@ -1,11 +1,24 @@
 .top-nav
   .top-nav_menu.full
-      .top-nav_menu-logo
-        - if get_settings_text('logo')
-          a href='/'
-            img src=image_url("logo.png") width="64"
-      .top-nav_menu-title
-        = get_settings_text('title')
-        - if get_settings_text('sub-title')
-          .sub-title
-            = get_settings_text('sub-title')
+    a.top-nav_menu-logo href='/'
+      - if get_settings_text('logo')
+        img src=image_url("logo.png") width="64"
+    a.top-nav_menu-title href='/'
+      = get_settings_text('title')
+      - if get_settings_text('sub-title')
+        .sub-title
+          = get_settings_text('sub-title')
+    .top-nav_menu-list
+      ul.dropdown.menu data-dropdown-menu=''
+        li
+          a href='#' Guides
+          ul.menu
+            - Totem::Lodestar::Version.all.each do |version|
+              li
+                a href="/#{version.title}" = version.title
+        li
+          a href='#' Api
+          ul.menu
+            - Totem::Lodestar::Api.all.each do |api|
+              li
+                a href="/api/#{api.title}" = api.title

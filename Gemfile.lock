@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    totem-lodestar (0.4.8)
+    totem-lodestar (0.5.1)
       browserify-rails
       coderay
       coffee-rails
