@@ -6,6 +6,7 @@ require 'slim'
 require 'foundation-rails'
 require 'coderay'
 require "font-awesome-rails"
+require 'compass-rails'
 
 module Totem
   module Lodestar

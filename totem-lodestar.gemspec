@@ -29,5 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency "font-awesome-rails"
   s.add_dependency "coffee-rails"
   s.add_dependency "browserify-rails"
+  s.add_dependency "compass-rails"
 end
 

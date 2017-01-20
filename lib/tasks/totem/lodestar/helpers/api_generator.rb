@@ -24,7 +24,7 @@ module Totem
           end
 
           build_behavior_file
-          build_style_file
+          # build_style_file
         end
       end
 

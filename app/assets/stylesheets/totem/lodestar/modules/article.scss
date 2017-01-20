@@ -15,12 +15,12 @@
 
   .article_side-nav-col {
     @include breakpoint(small only) {
-      @include flex-grid-order(1);
+      @include flex-order(1);
     }
 
     @include breakpoint(medium up) {
       @include flex-grid-column(3);
-      @include flex-grid-order(1);
+      @include flex-order(1);
     } 
   }
 
@@ -30,22 +30,22 @@
     background-color: $primary;
 
     @include breakpoint(small only) {
-      @include flex-grid-order(3);
+      @include flex-order(3);
     }
     @include breakpoint(medium up) {
       @include flex-grid-column(6);
-      @include flex-grid-order(2);
+      @include flex-order(2);
     }
   }
 
   .article_toc-col {
     @include breakpoint(small only) {
-      @include flex-grid-order(2);
+      @include flex-order(2);
     }
 
     @include breakpoint(medium up) {
       @include flex-grid-column(3);
-      @include flex-grid-order(3);
+      @include flex-order(3);
     }
   }
 
