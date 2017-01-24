@@ -4,22 +4,24 @@ module Totem
       def self.included(base)
       end
         
-      def generate_api_documents(build)
+      def generate_api_documents(build, is_local)
+        Totem::Lodestar::Api.destroy_all
+
         Settings.modules.api.repositories.each do |repo|
           create_api_record(repo)
         end
 
-        build_groc_documents if build
+        build_groc_documents(is_local) if build
       end
 
       private
 
-      def build_groc_documents
+      def build_groc_documents(is_local)
         Dir.mktmpdir(nil, Dir.pwd) do |dir|
           Dir.chdir(dir)
 
           Settings.modules.api.repositories.each do |repo|
-            clone_repo(repo)
+            clone_repo(repo, is_local)
             run_groc_cli(repo)
           end
 
@@ -32,8 +34,12 @@ module Totem
         "/api/" + Settings.modules.api.repositories.first.name
       end
 
-      def clone_repo(repo)
-        sh "git clone -b #{repo.branch} #{repo.url}"
+      def clone_repo(repo, is_local)
+        if is_local
+          sh "cp ~/Desktop/ember20/repos/#{repo.name} #{Dir.pwd} -r"
+        else
+          sh "git clone -b #{repo.branch} #{repo.url}"
+        end
         # sh "curl -H 'Authorization: token #{ENV['GITHUB_TOKEN']}' -L https://api.github.com/repos/sixthedge/#{repo.name}/tarball > #{repo.name}.tar.gz"
         # sh "tar -xvzf #{repo.name}.tar.gz"
         # sh "rm #{repo.name}.tar.gz"
