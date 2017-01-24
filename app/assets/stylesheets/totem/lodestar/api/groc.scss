@@ -104,17 +104,28 @@ body {
   max-width: $commentary-column-width;
 }
 
+a.lodestar-link {
+  padding-left: ($common-margin + $column-padding);
+  padding-top:  ($common-margin + $column-padding);
+  color:        $commentary-foreground-color;
+  display:      inline-block;
+  opacity:      .75;
+
+  &::before {
+    content:         "<< ";
+  }
+}
 // In two-column mode, the segment is actually shifted over a full column to favor code fragments.
 // We may or may not have either .comment or .code sections, so we need to handle all three cases.
 .segment {
   padding: ($common-margin/2) 0 ($common-margin/2) $commentary-column-width;
   white-space: nowrap;
 
-  &:first-child {
-    padding-top: $common-margin + $column-padding + $tools-height;
+  &:first-of-type {
+    padding-top: $tools-height;
   }
 
-  &:last-child {
+  &:last-of-type {
     padding-bottom: $common-margin + $column-padding;
   }
 
