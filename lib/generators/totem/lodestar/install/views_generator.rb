@@ -7,6 +7,7 @@ module Totem
 
         def inject_engine_views
           template 'application.html.slim.tt', './app/views/layouts/application.html.slim', skip: true
+          template 'api.html.slim.tt', './app/views/layouts/application.html/slim', skip: true
         end
 
       end

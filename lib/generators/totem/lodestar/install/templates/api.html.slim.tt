@@ -2,13 +2,15 @@ html
   head
     <script src="https://use.typekit.net/lik6jrc.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
-    
+  
     title <%= name %>
     = csrf_meta_tags
 
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload' 
+
+    = stylesheet_link_tag 'totem/lodestar/api/groc' if params[:controller].eql?('totem/lodestar/api')
+
 
   body
     = yield 
-  = content_tag :div, class: "settings", data: {settings: Settings, version:Gem.loaded_specs['totem-lodestar'].version.version} do
+  = content_tag :div, class: "settings", data: {settings: Settings, version: Gem.loaded_specs['totem-lodestar'].version.version} do

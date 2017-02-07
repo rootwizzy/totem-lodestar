@@ -1,6 +1,7 @@
 text:
   title:     <%= name.humanize.capitalize %>
   sub-title: Add your subtitle in config/settings.yml!
+  logo:      true
 modules:
   layout:
     full:
@@ -22,4 +23,14 @@ modules:
     highlight: 
       enabled: true
 
- 
+  api:      
+    repositories:
+      - name: $REPO
+        url: 'https://github.com/$USER/$REPO'
+        branch: $BRANCH
+        options:
+          out:     "-o ../../api/$REPO"
+          glob:    "./**/*.coffee README.md"
+          project: "-p $REPO"
+          url:     "--repository-url 'https://github.com/$USER/$REPO'"
+          branch: "-b $BRANCH"

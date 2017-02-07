@@ -76,7 +76,6 @@ $side-nav_header-text-transform: uppercase;
 $side-nav_header-size:           $small-font;
 $side-nav_header-letter-spacing: 0;
 
-
 $side-nav_link-color:            $black;
 $side-nav_link-bg:               transparent;
 $side-nav_link-border:           none;
@@ -87,13 +86,13 @@ $side-nav_link-radius:           $border-radius;
 $side-nav_link-size:             $small-font;
 $side-nav_link-line-height:      1.6;
 $side-nav_link-weight:           $regular;
-$side-nav_link-decoration-hover: underline;
 
 $side-nav_link-bg-hover:          $light-blue;
 $side-nav_link-border-hover:      none;
 $side-nav_link-border-left-hover: none;
 $side-nav_link-color-hover:       $black;
 $side-nav_link-weight-hover:      $regular;
+$side-nav_link-decoration-hover:  underline;
 
 $side-nav_link-bg-active:     $blue;
 $side-nav_link-border-active: none;
@@ -122,21 +121,36 @@ $toc_header-text-transform: uppercase;
 $toc_header-size:           $small-font;
 $toc_header-letter-spacing: 0;
 
-$toc_list-link-bg:                  transparent;
-$toc_list-link-indent-base:         1em; // multiplied by header level - 1 | ex: h3 = base*2
-$toc_list-link-padding:             $padding/2 $padding;
-$toc_list-link-color:               $dark-gray;
-$toc_list-link-weight:              $regular;
-$toc_list-link-line-height:         1.6;
-$toc_list-link-size:                $small-font;
-$toc_list-link-radius:              $border-radius;
-$toc_list-link-bg-hover:            $light-blue;
-$toc_list-link-bg-active:           $blue;
-$toc_list-link-bg-active-hover:     $dark-blue;
-$toc_list-link-color-active:        white;
-$toc_list-link-color-active-hover:  white;
-$toc_list-link-before-content:      "- ";
-$toc_list-link-transition-duration: 400ms;
+$toc_list-link-bg:                         transparent;
+$toc_list-link-indent-base:                1em; // multiplied by header level - 1 | ex: h3 = base*2
+$toc_list-link-padding:                    $padding/2 $padding;
+$toc_list-link-color:                      $dark-gray;
+$toc_list-link-color-hover:                $dark-green;
+$toc_list-link-weight:                     $regular;
+$toc_list-link-line-height:                1.6;
+$toc_list-link-size:                       $small-font;
+$toc_list-link-radius:                     $border-radius;
+$toc_list-link-bg-hover:                   $light-blue;
+$toc_list-link-bg-active:                  $blue;
+$toc_list-link-bg-active-hover:            $dark-blue;
+$toc_list-link-border-bottom:              none;
+$toc_list-link-border-bottom-hover:        none;
+$toc_list-link-border-bottom-active:       none;
+$toc_list-link-border-bottom-active-hover: none;
+$toc_list-link-decoration-hover:           underline;
+$toc_list-link-color-active:               white;
+$toc_list-link-color-active-hover:         white;
+$toc_list-link-before-content:             "- ";
+$toc_list-link-transition-duration:        400ms;
+
+/****
+Article
+****/
+$article_updated-color:      $ownership;
+$article_updated-font-style: italic;
+$article_updated-font-size:  $small-font;
+$article_updated-spacing:    $padding 0;
+
 /****
 Markdown
 ****/
@@ -146,6 +160,9 @@ $md_document-spacing: 4em;
 /** Paragraph **/
 $md-p_line-height: 1.75;
 $md-p_weight:      $thin;
+
+/** Emphasis **/
+$md-strong_color: $gray;
 
 /** Headers **/
 $md-h_font:        $font;
@@ -162,6 +179,10 @@ $md-h4_size: 1.15em;
 $md-h5_size: 1em;
 $md-h6_size: .875em;
 
+/** Anchors **/
+$md-a_color:      $blue;
+$md-a_decoration: underline;
+
 
 /** Block Quotes **/
 $md-blockquote_bg:          $blue;
@@ -174,10 +195,12 @@ $md-blockquote_weight:      $regular;
 $md-blockquote_spacing:     1.5em;
 
 /** Code Blocks **/
-$md-codeblock_bg:      $light-gray;
-$md-codeblock_padding: $padding;
-$md-codeblock_margin:  0 0 $padding 0;
-$md-codeblock_radius:  $border-radius;
+$md-codeblock_bg:          $light-gray;
+$md-codeblock_padding:     $padding;
+$md-codeblock_margin:      0 0 $padding 0;
+$md-codeblock_radius:      $border-radius;
+$md-codeblock_border-left: 4px solid darken($dark-gray, 10%);
+$md-codeblock_font:        "Roboto-Mono", monospace;
 
 /** Code Spans**/
 $md-codespan_color:     $black;
