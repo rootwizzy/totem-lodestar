@@ -71,6 +71,11 @@
 
       &:first-of-type{margin-bottom: 0;}
     }
+
+    strong {
+      color:       $md-blockquote_strong-color;
+      font-weight: $md-blockquout_strong-weight;
+    }
   }
 
   /****
