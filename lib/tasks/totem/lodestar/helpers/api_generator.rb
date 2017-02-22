@@ -147,10 +147,6 @@ module Totem
             toc_lines.pop
             toc_lines.push("    },\n")
 
-            File.open(Dir.pwd + '/OUT.txt', "w+") do |file|
-              file.write(toc_lines)
-            end
-
             files.push(toc_lines)
           end
         end
@@ -163,7 +159,6 @@ module Totem
 
         File.open('behavior.js', "a") do |f|
           files.each do |toc_lines|
-            p "Writing TOCLINE: #{toc_lines}"
             toc_lines.each { |l| f.write(l) }
           end
         end
