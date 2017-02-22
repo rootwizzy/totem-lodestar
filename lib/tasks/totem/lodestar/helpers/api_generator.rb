@@ -40,15 +40,18 @@ module Totem
         else
           sh "git clone -b #{repo.branch} #{repo.url}"
         end
-        # sh "curl -H 'Authorization: token #{ENV['GITHUB_TOKEN']}' -L https://api.github.com/repos/sixthedge/#{repo.name}/tarball > #{repo.name}.tar.gz"
-        # sh "tar -xvzf #{repo.name}.tar.gz"
-        # sh "rm #{repo.name}.tar.gz"
-        # Dir.foreach(Dir.pwd) do |dir|
-        #   if dir.include?(repo.name)
-        #     sh "cp #{Dir.pwd + '/' + dir} #{Dir.pwd + '/' + repo.name} -r"
-        #     sh "rm #{Dir.pwd + '/' + dir} -r"
-        #   end
-        # end
+      end
+
+      def clone_repo_with_token(repo)
+        sh "curl -H 'Authorization: token #{ENV['GITHUB_TOKEN']}' -L https://api.github.com/repos/sixthedge/#{repo.name}/tarball > #{repo.name}.tar.gz"
+        sh "tar -xvzf #{repo.name}.tar.gz"
+        sh "rm #{repo.name}.tar.gz"
+        Dir.foreach(Dir.pwd) do |dir|
+          if dir.include?(repo.name)
+            sh "cp #{Dir.pwd + '/' + dir} #{Dir.pwd + '/' + repo.name} -r"
+            sh "rm #{Dir.pwd + '/' + dir} -r"
+          end
+        end
       end
 
       def run_groc_cli(repo)
@@ -73,7 +76,7 @@ module Totem
 
       def build_behavior_file
         create_file("behavior.js", "/api/assets")
-        scrape_jquery_min
+        scrape_header
         scrape_table_of_contents
         scrape_groc_helpers
       end
@@ -103,7 +106,7 @@ module Totem
         write_file('style.css', "w+", lines)
       end
 
-      def scrape_jquery_min
+      def scrape_header
         lines = []
         scan  = true
 
@@ -113,7 +116,7 @@ module Totem
           file.each_line do |l| 
             lines.push(l) if scan == true
 
-            scan = false if l.eql?("  var MAX_FILTER_SIZE, appendSearchNode, buildNav, buildTOCNode, clearFilter, clearHighlight, currentNode$, currentQuery, fileMap, focusCurrentNode, highlightMatch, moveCurrentNode, nav$, searchNodes, searchableNodes, selectNode, selectNodeByDocumentPath, setCurrentNodeExpanded, setTableOfContentsActive, tableOfContents, toc$, toggleTableOfContents, visitCurrentNode;\n")
+            scan = false if l.eql?("  var MAX_FILTER_SIZE, appendSearchNode, buildNav, buildTOCNode, clearFilter, clearHighlight, currentNode$, currentQuery, fileMap, focusCurrentNode, highlightMatch, moveCurrentNode, nav$, searchNodes, searchableNodes, selectNode, selectNodeByDocumentPath, setCurrentNodeExpanded, setTableOfContentsActive, toc$, toggleTableOfContents, visitCurrentNode;\n")
           end
         end
 
@@ -144,9 +147,14 @@ module Totem
             toc_lines.pop
             toc_lines.push("    },\n")
 
+            File.open(Dir.pwd + '/OUT.txt', "w+") do |file|
+              file.write(toc_lines)
+            end
+
             files.push(toc_lines)
           end
         end
+
 
         files.unshift(["  tableOfContents = [\n"])
         files.push(["  ];\n"])
@@ -155,6 +163,7 @@ module Totem
 
         File.open('behavior.js', "a") do |f|
           files.each do |toc_lines|
+            p "Writing TOCLINE: #{toc_lines}"
             toc_lines.each { |l| f.write(l) }
           end
         end
