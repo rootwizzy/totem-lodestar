@@ -8,6 +8,7 @@ namespace :totem do
   namespace :lodestar do
 
     # `rails totem:lodestar:generate`
+    #
     # Generate uses the **GuidesGenerator** helpers to build the markdown documents for the guides section of lodestar. This two step process first scrapes the designated documents folder and builds a hash tree that mimics the files and structure. The second part migrates the files into the database removing any deleted documents.
     desc "Parses markdown documents then migrates to the database"
     task generate: :environment do
@@ -17,7 +18,8 @@ namespace :totem do
     end
 
     # `rails totem:lodestar:reset_slugs`
-    # Reset slugs is used if there becomes and conflicting slugs for the URL. This will happen if a file/folder happen to use the same string, thus requiring **friendly_id** to generate a very _unfriendly_ id. After fixing the conflict run this command to wipe the existing slug associations which will re-build after accessing those files again.
+    #
+    # Reset slugs is used if there are conflicting slugs for the URL. This will happen if a file/folder happen to use the same string, thus requiring **friendly_id** to generate a very _unfriendly_ id. After fixing the conflict run this command to wipe the existing slug associations which will re-build after accessing those files again.
     desc "Regenerates all slugs"
     task reset_slugs: :environment do
       [Version, Section, Document].each {|klass| klass.all.each {|record| record.slug = nil; record.save}}

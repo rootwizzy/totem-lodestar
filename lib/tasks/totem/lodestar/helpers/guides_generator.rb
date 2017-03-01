@@ -1,6 +1,4 @@
-module Totem
-  module Lodestar
-    module GuidesGenerator  
+module Totem; module Lodestar; module GuidesGenerator  
       module Parser
         DOCUMENTS_DIR = '/public/documents'
 
@@ -209,8 +207,6 @@ module Totem
             return order
           end
         end
-
       end
-    end
-  end
-end
+      
+end; end; end
