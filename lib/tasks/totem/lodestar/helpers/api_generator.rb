@@ -16,7 +16,7 @@ module Totem; module Lodestar; module ApiGenerator
   def generate_api_documents(build, is_local)
     # Remove all of the current existing API records for a fresh slate so any removed repositories from the settings file will no longer exist.
     # 
-    # @todo: Re-factor this to check the diff of current and new repos as to reduce the margin for redundant creation.
+    # @todo Re-factor this to check the diff of current and new repos as to reduce the margin for redundant creation.
     Totem::Lodestar::Api.destroy_all
 
     # To generate the API records we use the settings.yml as the source, this will be run every time the task is called to regenerate the records using the repo title.
