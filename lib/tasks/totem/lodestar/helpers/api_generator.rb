@@ -50,7 +50,6 @@ module Totem; module Lodestar; module ApiGenerator
     end
   end
 
-
   # Used to take a given repo path and stage it into a temporary folder for Groc to use for building source documentation.
   # @method clone_repo
   # @private
