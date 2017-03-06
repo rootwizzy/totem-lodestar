@@ -15,7 +15,7 @@ module Totem; module Lodestar; module GuidesGenerator;
 
     attr_accessor :doc_hash
 
-    # Initializes module attributes when included in the rake task. Create the wrapper `doc_hash` that will contain the complete folder structure of the public documents directory. We also start by changing to the base documents directory.
+    # Initializes module variables when included in the rake task. Create the wrapper `doc_hash` that will contain the complete folder structure of the public documents directory. We also start by changing to the base documents directory.
     def self.included(base)
       GuidesGenerator::Parser::doc_hash = {}
       change_to(Dir.pwd + DOCUMENTS_DIR, false) {}
@@ -26,7 +26,7 @@ module Totem; module Lodestar; module GuidesGenerator;
     # @public
     def generate_document_structure; build_document_hash end
 
-    # ### Private
+    # ### Helpers
     private
 
     # This is the method that recursively builds the document hash starting at the base directory and adding the files/sections to the hash.
@@ -145,6 +145,7 @@ module Totem; module Lodestar; module GuidesGenerator;
     def section_class;  Totem::Lodestar::Section  end
     def document_class; Totem::Lodestar::Document end
 
+    # Initializes module variables when included in the rake task. These arrays are used for storing the current and upcoming sections/documents and will be used in a differential to create the new set of records.
     def self.included(base)
       GuidesGenerator::Migrator::migrated_versions  = []
       GuidesGenerator::Migrator::migrated_sections  = []
@@ -155,12 +156,14 @@ module Totem; module Lodestar; module GuidesGenerator;
       GuidesGenerator::Migrator::previous_documents = []
     end
 
+    # Helper methods used to add and return the array of migrated records.
     def add_version(version);   GuidesGenerator::Migrator::migrated_versions.push(version);   version  end
     def add_section(section);   GuidesGenerator::Migrator::migrated_sections.push(section);   section  end
     def add_document(document); GuidesGenerator::Migrator::migrated_documents.push(document); document end
 
-    ## Take document structure from the parser and get or create db records for them, then remove any
-    ## documents that were not parsed to remove any deleted version/sections/documents.
+    # Take document structure from the parser and get or create db records for them, then remove any documents that were not parsed to remove any deleted version/sections/documents.
+    # @method migrate_document_structure
+    # @public
     def migrate_document_structure
       set_previous_migrations
 
@@ -175,13 +178,25 @@ module Totem; module Lodestar; module GuidesGenerator;
       destroy_removed_migrations
     end
 
+    # ### Helpers
+    private
+
+    # Grabs all pre-existing records in the database and set the according `previous_...` array to the that.
+    # @method set_previous_migrations
+    # @private
     def set_previous_migrations
       GuidesGenerator::Migrator::previous_versions  = version_class.all
       GuidesGenerator::Migrator::previous_sections  = section_class.all
       GuidesGenerator::Migrator::previous_documents = document_class.all
     end
 
+    # Remove any records from the database if they do not exists in the differential between the previous migrations and to be migrated records.
+    # @method destroy_removed_migrations
+    # @private
     def destroy_removed_migrations
+      # @todo Make these methods into a more DRY manner for grabbing each record type and diff'ing them.
+      # 
+      # We create an array for each record type that includes all records that we are going to destroy. We do this by taking the previous records array, converting them to a standard array and keeping them if any previous records occur in the migrated records array.
       versions_to_remove = GuidesGenerator::Migrator::previous_versions.to_a.keep_if do |version|
         !GuidesGenerator::Migrator::migrated_versions.include?(version)
       end
@@ -194,10 +209,15 @@ module Totem; module Lodestar; module GuidesGenerator;
         !GuidesGenerator::Migrator::migrated_documents.include?(document)
       end
 
+      # After we have all the arrays of records to remove iterate over each array and destroy the records.
       [versions_to_remove, sections_to_remove, documents_to_remove].each {|records| records.each {|record| record.destroy}}
     end
 
-    ## Check the version hash for an index.md or return default text
+    # Check the version hash for an index.md or return default text if there is none. This allows each version to have an base index page to hit for rails.
+    # @method get_version_index_text
+    # @private
+    # @param {Hash} data The version object to use if applicable
+    # @param {String} Version The version title to add to default text if there is no data.
     def get_version_index_text(data, version)
       index = 
         "
@@ -208,6 +228,12 @@ module Totem; module Lodestar; module GuidesGenerator;
       if data and data.select {|file| file[:title] == 'index.md'} then index = File.read(data[0][:path]) end
     end
 
+    # Take an array of section objects then create the record and build the included child sections and files.
+    # @method migrate_sections
+    # @private
+    # @param {Array} sections An array of section objects from the doc_hash
+    # @param {String} version The parent version of all the sections
+    # @param {Hash} parent The parent section if these sections are a child array
     def migrate_sections(sections, version, parent=nil)
       sections.each do |section|
         section_record = get_or_create_section(section, version, parent)
@@ -216,6 +242,12 @@ module Totem; module Lodestar; module GuidesGenerator;
       end
     end
 
+    # Take an array of file objects then create the record.
+    # @method migrate_docuemnts
+    # @private
+    # @param {Array} files An array of file objects
+    # @param {Hash} section The parent section of the file, if nil then file is part of the base version array.
+    # @param {String} version The parent version of all the files
     def migrate_documents(files, section, version)
       files.each do |file|
         document              = {}
@@ -227,6 +259,10 @@ module Totem; module Lodestar; module GuidesGenerator;
       end      
     end
 
+    # Takes a document object and sets the according model attributes then saving the record.
+    # @method get_or_create_document
+    # @private
+    # @param {Hash} document The document object hash with corresponding attributes
     def get_or_create_document(document)
       order = set_order_from_title(document[:title])
       obj   = document_class.find_or_create_by(title: document[:title], section_id: document[:section_id], version_id: document[:version_id])
@@ -238,6 +274,11 @@ module Totem; module Lodestar; module GuidesGenerator;
       add_document(obj)
     end
 
+    # Takes a version object and sets the according model attributes then saving the record.
+    # @method get_or_create_document
+    # @private
+    # @param {String} title The version title
+    # @param {String} text The versions body text from a markdown file or default.
     def get_or_create_version(title, text)
       version      = version_class.find_or_create_by(title: title)
       version.updated_at = Time.now unless version.body.eql? text
@@ -246,6 +287,13 @@ module Totem; module Lodestar; module GuidesGenerator;
       add_version(version)
     end
 
+
+    # Takes a version object and sets the according model attributes then saving the record.
+    # @method get_or_create_document
+    # @private
+    # @param {Hash} section The section hash with corresponding attributes
+    # @param {Object} version The version record to associate with
+    # @param {Hash} parent The parent section if available
     def get_or_create_section(section, version, parent)
       order          = set_order_from_title(section[:title])
       section        = section_class.find_or_create_by(title: section[:title], version_id: version.id)
@@ -255,6 +303,11 @@ module Totem; module Lodestar; module GuidesGenerator;
       add_section(section)
     end
 
+
+    # Takes a version object and sets the according model attributes then saving the record.
+    # @method get_or_create_document
+    # @private
+    # @param {String} title Scrape the order attribute based on the title string of a file.
     def set_order_from_title(title)
       has_order = /^[0-9]?[0-9]_/.match(title)
       if has_order
