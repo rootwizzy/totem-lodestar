@@ -57,7 +57,7 @@ module Totem; module Lodestar; module ApiGenerator
   # @param {Boolean} is_local The flag used to run the copy or clone statements
   def clone_repo(repo, is_local)
     if is_local
-      sh "cp ~/Desktop/ember20/repos/#{repo.name} #{Dir.pwd} -r"
+      sh "cp ~/Projects/#{repo.name} #{Dir.pwd} -r"
     else
       sh "git clone -b #{repo.branch} #{repo.url}"
     end
