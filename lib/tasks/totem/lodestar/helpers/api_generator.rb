@@ -100,7 +100,7 @@ module Totem; module Lodestar; module ApiGenerator
   # @param {Object} options Set of groc cli options
   def groc_cli(options)
     # Set the groc to use the installed node_modules version, this should be the custom groc made of lodestar which handles multiple repos and custom table of contents.
-    bin = "../node_modules/.bin/groc "
+    bin = "~/Projects/totem-lodestar/node_modules/.bin/groc "
 
     # Add the options to the command string except for the glob portion which must be added at the end of the string.
     options.each do |opt|
