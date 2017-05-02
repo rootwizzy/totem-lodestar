@@ -1,11 +1,11 @@
 text:
-  title:     <%= name.humanize.capitalize %>
-  sub-title: Add your subtitle in config/settings.yml!
-  logo:      true
+  title: Totem docs
+  logo:  false
 modules:
   layout:
-    full:
+    full_width:
       enabled: true
+      default: true
 
   versions:
     index_redirect: true
@@ -13,8 +13,8 @@ modules:
   side_bar:
     collapse:
       enabled:        true
-      expanded_icon:  'fa fa-minus-square right'
-      collapsed_icon: 'fa fa-plus-square right'
+      expanded_icon:  'fa fa-minus right'
+      collapsed_icon: 'fa fa-plus right'
 
   table_of_contents:
     smooth_scroll:
@@ -23,14 +23,22 @@ modules:
     highlight: 
       enabled: true
 
+
   api:      
     repositories:
-      - name: $REPO
+      - name: cellar
         url: 'https://github.com/$USER/$REPO'
-        branch: $BRANCH
+        branch: master
         options:
-          out:     "-o ../../api/$REPO"
-          glob:    "./**/*.coffee README.md"
-          project: "-p $REPO"
-          url:     "--repository-url 'https://github.com/$USER/$REPO'"
-          branch: "-b $BRANCH"
+          out: '-o ../../api/$REPO'
+          glob: '"./src/**/*.rb" 
+          "./src/**/*.coffee" 
+          "./src/**/*.js" 
+          "./src/**/*.scss" 
+          "./src/**/*.yml" 
+          "README.md"'
+          project: '-p $REPO'
+          url: '--repository-url "https://github.com/$USER/$REPO"'
+          branch: '-b master'
+
+

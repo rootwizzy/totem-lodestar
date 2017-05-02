@@ -1,14 +1,14 @@
 [![Build Status](https://travis-ci.org/rootwizzy/totem-lodestar.svg?branch=master)](https://travis-ci.org/rootwizzy/totem-lodestar)
 
 # Totem::Lodestar
-A gem built to include base functonaility for markdown based documentation rails app.
+A gem built to include base functionality for markdown based documentation rails app.
 
 ## Installation
-> Hey!! This process should be done on a fresh installiation of Rails 5.0+, some files will be force replaced and data may be lost to default values!
+> Hey!! This process should be done on a fresh installation of Rails 5.0+, some files will be force replaced and data may be lost to default values!
 
-Add this line to your application's Gemfile:
+Add this line to your application's `Gemfile`
 ```ruby
-gem 'totem-lodestar', :git => 'https://github.com/rootwizzy/totem-lodestar'
+gem 'totem-lodestar', git: 'https://github.com/sixthedge/totem-lodestar', branch: 'master'
 ```
 
 Install the gem with
@@ -23,18 +23,26 @@ $ rails g totem:lodestar:install
 
 After the install, configure your database settings in `app/config/database.yml` these will be defaulted to values that may not be valid in your environment.
 
-> The engine requires postgres to be the database of the application at this time.
+> The engine requires Postgresql to be the database of the application at this time.
 
 Migrate the database
 ```bash
-rails [db:drop] db:create db:migrate
+$ rails db:drop db:create db:migrate
 ```
 
 > Before this last step you must have the documents directory added currently it must be `app/public/documents/` within the `documents/` directory there must be at least one version denoted. (ex: 1.0.0)
 
-Generate the documents
+Generate Guides
 ```bash
-rails totem:lodestar:generate
+$ rails totem:lodestar:generate
+```
+
+Generate API
+```bash
+$ rails totem:lodestar:api[build]
+
+// If you want to build off your local directories use
+$ rails totem:lodestar:api[build,local]
 ```
 
 
