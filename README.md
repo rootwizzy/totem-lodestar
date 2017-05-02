@@ -54,5 +54,14 @@ Generate your secure key
 travis encrypt $(heroku auth:token) --add deploy.api_key
 ```
 
+Then add this generated secure key to the `.travis.yml`
+```yaml
+deploy:
+  provider: heroku
+  api_key:
+    secure: $SECURE_KEY
+  on: master
+```
+
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
