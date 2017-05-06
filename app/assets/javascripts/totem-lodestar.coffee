@@ -13,9 +13,9 @@
 #= require foundation
 #= require_tree .
 
-
+# Define an initialization function to load TotemLodestar modules as well as initialize any foundation modules, use the `turbolinks:load` function to determine when the document has been loaded.
 ready =  ->
-  TotemLodestar.load();
+  TotemLodestar.load(); # Defined in `totem/lodestar/loader.coffee`
   $(document).foundation();
 
 $(document).on('turbolinks:load', ready);
